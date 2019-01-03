@@ -6,38 +6,33 @@ import java.util.Scanner;
 public class GradingSolution {
 
     public static void main(String[] args) {
-        Scanner si = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter class size");
+        int n = input.nextInt();
         
-        System.out.println("Enter size of class");
-        
-        int n = si.nextInt();
-        int [] Mark = new int[n];
-        String comment;
-        
-        for(int i = 0; i<Mark.length; i++){
-            System.out.println("Enter Mark["+(i+1)+"]");
-           
-            int grade = si.nextInt();
-            
-            if(grade<=38){
-                Mark[i] = grade;
-                comment = "Fail";
-            }else{               
-                
-                if((grade+1)%5==0){
-                    Mark[i] = grade+1;
-                    comment = "Pass";
-                }else if((grade+2)%5==0){
-                    Mark[i] = grade+2;
-                    comment = "Pass";
-                }
-                else{
-                    Mark[i] = grade;
-                    comment = "Pass";
-                }
-            }
-            System.out.println("Mark["+(i+1)+"] = "+Mark[i]+ " comment : "+comment);
+        int [] grades = new int[n];
+
+        for(int grade=0; grade < n; grade++){
+            System.out.println("Enter grades["+(grade+1)+"]");
+             grades[grade] = input.nextInt();             
         }
+        
+        System.out.println("Rounded-off results");
+        
+        for(int i=0;i<n;i++){
+            if(grades[i]<= 38){
+                System.out.println("grades["+(i+1)+"]"+grades[i]);
+            }
+            else if(grades[i]%5>=3){                
+                grades[i]=grades[i]+(5-grades[i]%5);
+                System.out.println("grades["+(i+1)+"]"+grades[i]);
+            }
+            else{
+                System.out.println("grades["+(i+1)+"]"+grades[i]);
+            }                     
+        }
+        
     }
     
 }
